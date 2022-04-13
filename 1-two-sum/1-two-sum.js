@@ -11,6 +11,6 @@ var twoSum = function(nums, target) {
         if(map.hasOwnProperty(nums[i])){
             return ([nums.indexOf(goal), i])
         }
-        map[goal] = i
+        map[goal] = true;
     }
 };
