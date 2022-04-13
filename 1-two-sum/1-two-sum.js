@@ -4,12 +4,13 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    for(i = 0; i < nums.length; i++){
-        for(j = i+1; j <= nums.length; j++){
-            if(nums[i] + nums[j] == target){
-                var answerArr = [i, j];
-                return answerArr;
-            }
+    const map = {}
+    
+    for(let i = 0; i < nums.length; i++){
+        var goal = target - nums[i];
+        if(map.hasOwnProperty(nums[i])){
+            return ([nums.indexOf(goal), i])
         }
+        map[goal] = i
     }
 };
