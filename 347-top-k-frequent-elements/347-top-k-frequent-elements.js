@@ -12,7 +12,7 @@ var topKFrequent = function(nums, k) {
             map[nums[i]] = 1;
         }
     }
-    console.log(map);
+
     console.log(Object.keys(map));
     
     var answer = [];
