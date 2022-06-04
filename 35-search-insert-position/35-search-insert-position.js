@@ -18,18 +18,6 @@ var searchInsert = function(nums, target) {
         } else {
             return midIdx;
         }
-        
-//         if(midNum == target){
-//             return midIdx;
-//         } else if (midNum > target && nums[midIdx-1] < target) {
-//             return midIdx;
-//         }
-        
-//         if(midNum < target){
-//             leftIdx = midIdx + 1;
-//         } else {
-//             rightIdx = midIdx - 1;
-//         }
     }
     return leftIdx;
 };
