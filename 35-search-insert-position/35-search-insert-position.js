@@ -4,23 +4,30 @@
  * @return {number}
  */
 var searchInsert = function(nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
-    
-    do {
-        const i = Math.floor((right - left) / 2) + left;
+    var leftIdx = 0;
+    var rightIdx = nums.length - 1;
+    var midIdx;
+    if(nums[rightIdx] < target) {
+        return rightIdx + 1;;
+    }
+    if(nums[leftIdx] > target) {
+        return leftIdx;
+    }
+    while(leftIdx <= rightIdx){
+        var midIdx = Math.floor((leftIdx + rightIdx) / 2);
+        var midNum = nums[midIdx];
         
-        const value = nums[i];
-        
-        if (value > target) {
-            right = i - 1;
-        } else if (value < target) {
-            left = i + 1;
-        } else {
-            return i;
+        if(midNum == target){
+            return midIdx;
+        } else if (midNum > target && nums[midIdx-1] < target) {
+            return midIdx;
         }
         
-    } while (right - left >= 0);
-    
-    return left;
+        if(midNum < target){
+            leftIdx = midIdx + 1;
+        } else {
+            rightIdx = midIdx - 1;
+        }
+    }
+    return midIdx;
 };
