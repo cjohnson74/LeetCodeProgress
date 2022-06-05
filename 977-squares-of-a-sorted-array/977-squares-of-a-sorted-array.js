@@ -7,13 +7,13 @@ var sortedSquares = function(nums) {
     var leftPointer = 0;
     var rightPointer = nums.length - 1;
     while(leftPointer <= rightPointer){
-        var leftNum = Math.abs(nums[leftPointer]);
-        var rightNum = Math.abs(nums[rightPointer]);
-        if(leftNum > rightNum) {
-            squaredNums.push(leftNum*leftNum);
+        var leftNumSquared = Math.pow(nums[leftPointer],2);
+        var rightNumSquared = Math.pow(nums[rightPointer],2);
+        if(leftNumSquared > rightNumSquared) {
+            squaredNums.push(leftNumSquared);
             leftPointer++;
         } else {
-            squaredNums.push(rightNum*rightNum);
+            squaredNums.push(rightNumSquared);
             rightPointer--;
         }
     }
