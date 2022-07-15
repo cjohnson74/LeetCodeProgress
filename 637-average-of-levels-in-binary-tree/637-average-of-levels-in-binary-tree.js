@@ -11,33 +11,34 @@
  * @return {number[]}
  */
 var averageOfLevels = function(root) {
-  var levels = [];
-  fillLevels(root, levels, 0);
+  if(root === null) return [];
+  var queue = [{ node: root, levelNum: 0 }]
+  var mainArray = [];
+  var answer = [];
   
-  var averages = [];
-  for(let level of levels){
-    averages.push(avg(level));
-  }
-  return averages;
-}
-
-const fillLevels = (node, levels, levelNum) => {
-  if(node === null) return [];
-  
-  if(levels.length === levelNum){
-    levels[levelNum] = [node.val];
-  } else {
-    levels[levelNum].push(node.val);
+  while(queue.length > 0){
+    const { node, levelNum } = queue.shift();
+    if(mainArray.length === levelNum){
+      mainArray.push([node.val]);
+    } else {
+      mainArray[levelNum].push(node.val);
+    }
+    
+    if(node.left !== null) queue.push({ node: node.left, levelNum: levelNum+1 });
+    if(node.right !== null) queue.push({ node: node.right, levelNum: levelNum+1 })
   }
   
-  fillLevels(node.left, levels, levelNum+1);
-  fillLevels(node.right, levels, levelNum+1);
-}
+  for(let level of mainArray){
+    answer.push(averageLevel(level));
+  }
+  return answer;
+};
 
-const avg = (level) => {
-  var average = 0;
+const averageLevel = (level) => {
+  var sum = 0;
+  var divisor = level.length;
   for(let num of level){
-    average += num
+    sum += num;
   }
-  return average / level.length;
+  return sum / divisor;
 };
