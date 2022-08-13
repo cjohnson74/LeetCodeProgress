@@ -3,28 +3,32 @@
  * @return {number}
  */
 var numIslands = function(grid) {
-    let noOfIslands = 0;
+    var rowMax = grid.length;
+    var colMax = grid[0].length;
+    var count = 0;
+    var visited = new Set();
     
-    let m = grid.length;
-    let n = grid[0].length;
-    
-    for(let i = 0; i < m; i++) {
-        for(let j = 0; j < n; j++) {
-            if(isIsland(grid, i, j)) noOfIslands++;
+    for (let row = 0; row < rowMax; row++) {
+        for (let col = 0; col < colMax; col++) {
+            if (grid[row][col] === '1') {
+                count += dfs(grid, row, col, rowMax, colMax,visited);
+            }
         }
     }
     
-    function isIsland(grid, i, j) {
-        if(i < 0 || j < 0 || i >= m || j >= n || grid[i][j] === "0") return false;
-        
-        grid[i][j] = "0";
-        
-        isIsland(grid, i + 1, j);
-        isIsland(grid, i - 1, j);
-        isIsland(grid, i, j + 1);
-        isIsland(grid, i, j - 1);
-        
-        return true;
-    }
-    return noOfIslands;
+    return count++;
 };
+
+var dfs = function(grid, row, col, rowMax, colMax, visited) {
+    if (grid[row][col] === '0') return 0;
+    
+    var pos = row + ',' + col;
+    if (visited.has(pos)) return 0;
+    visited.add(pos);
+    
+    if (row-1 >= 0) dfs(grid, row-1, col, rowMax, colMax, visited);
+    if (row+1 < rowMax) dfs(grid, row+1, col, rowMax, colMax, visited);
+    if (col-1 >= 0) dfs(grid, row, col-1, rowMax, colMax, visited);
+    if (col+1 < colMax) dfs(grid, row, col+1, rowMax, colMax, visited);
+    return 1;
+}
