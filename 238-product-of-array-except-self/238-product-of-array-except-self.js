@@ -3,16 +3,19 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    var result = [];
-    var pointer = 0;
-    while (pointer < nums.length){
-        var sum = 1;
-        for (let i = 0; i < nums.length; i++) {
-            if (i !== pointer) sum = sum * nums[i];
-        }
-        result.push(sum);
-        pointer++;
+    var results = Array(nums.length).fill(1);
+    
+    var product = 1;
+    for (let i = 0; i < nums.length-1; i++) {
+        product *= nums[i];
+        results[i+1] *= product;
     }
     
-    return result;
+    var product = 1;
+    for (let i = nums.length-1; i > 0; i--) {
+        product *= nums[i];
+        results[i-1] *= product
+    }
+    
+    return results
 };
