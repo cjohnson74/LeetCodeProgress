@@ -6,7 +6,6 @@ var maxAreaOfIsland = function(grid) {
     var rowMax = grid.length;
     var colMax = grid[0].length;
     var largestIsland = -Infinity;
-    var visited = new Set();
     
     
     for (let row = 0; row < rowMax; row++) {
