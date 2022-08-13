@@ -4,21 +4,30 @@
  * @return {number[]}
  */
 var topKFrequent = function(nums, k) {
-    var map = {};
-    for(let i = 0; i < nums.length; i++) {
-        if (map.hasOwnProperty(nums[i])) {
-            map[nums[i]]++;
-        } else {
-            map[nums[i]] = 1;
-        }
-    }
-
-    console.log(Object.keys(map));
+    var set = {};
+    var occerences = {};
+    var highestK = 0;
+    var result = [];
     
-    var answer = [];
-    for (let key in map) {
-        answer.push([key, map[key]]);
+    for (let num of nums) {
+        if (!(num in set)) set[num] = 0;
+        set[num]++;
     }
-    answer.sort((a, b) => b[1] - a[1]);
-    return answer.slice(0, k).map((x) => x[0]);
+    
+    for (let key in set) {
+        var number = key;
+        var occerence = set[key];
+        if (occerence > highestK) highestK = occerence;
+        if (!(occerence in occerences)) occerences[occerence] = [];
+        occerences[occerence].push(number);
+    }
+    
+    while (k > 0) {
+        while (occerences[highestK] !== undefined && occerences[highestK].length > 0) {
+            result.push(occerences[highestK].pop());
+            k--;
+        }
+        highestK--;
+    }
+    return result;
 };
