@@ -13,7 +13,7 @@ var maxAreaOfIsland = function(grid) {
         for (let col = 0; col < colMax; col++) {
             var currIsland = 0;
             if (grid[row][col] === 1) {
-                currIsland += dfs(grid, row, col, rowMax, colMax, visited);
+                currIsland += dfs(grid, row, col, rowMax, colMax);
             }
             largestIsland = Math.max(largestIsland, currIsland);
         }
@@ -22,7 +22,7 @@ var maxAreaOfIsland = function(grid) {
     return largestIsland;
 };
 
-var dfs = function(grid, row, col, rowMax, colMax, visited) {
+var dfs = function(grid, row, col, rowMax, colMax) {
     var rowInbound = row >= 0 && row < rowMax;
     var colInbound = col >= 0 && col < colMax;
     var inbounds = rowInbound && colInbound;
@@ -30,17 +30,12 @@ var dfs = function(grid, row, col, rowMax, colMax, visited) {
     
     if (grid[row][col] === 0) return 0;
     
-    var pos = row + ',' + col;
-    if (visited.has(pos)) {
-        return 0;
-    } else {
-        visited.add(pos);
-    }
+    grid[row][col] = 0;
     
     var size = 1;
-    size += dfs(grid, row-1, col, rowMax, colMax, visited);
-    size += dfs(grid, row+1, col, rowMax, colMax, visited);
-    size += dfs(grid, row, col-1, rowMax, colMax, visited);
-    size += dfs(grid, row, col+1, rowMax, colMax, visited);
+    size += dfs(grid, row-1, col, rowMax, colMax);
+    size += dfs(grid, row+1, col, rowMax, colMax);
+    size += dfs(grid, row, col-1, rowMax, colMax);
+    size += dfs(grid, row, col+1, rowMax, colMax);
     return size;
 }
