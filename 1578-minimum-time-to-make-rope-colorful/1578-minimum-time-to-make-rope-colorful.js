@@ -29,8 +29,6 @@ var minCost = function(colors, neededTime) {
             }
             currTimes.push(neededTime[i])
             var currTimesSorted = currTimes.sort((a,b) => a-b);
-            console.log(currTimes)
-            console.log(currTimesSorted);
             for (let j = 0; j < currTimesSorted.length-1; j++) {
                 totalTime += currTimesSorted[j];
             }
