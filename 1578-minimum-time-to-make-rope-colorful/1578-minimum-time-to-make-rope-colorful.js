@@ -17,22 +17,13 @@ var minCost = function(colors, neededTime) {
     // for loop through currTimes start at 0 end at < length-1 and add the times to totalTime
     // after for loop return totalTime
     
-    var totalTime = 0;
+    var totalTime = 0, currMaxTime = 0;
     
-    for (let i = 0; i < colors.length-1; i++) {
-        if (colors[i] == colors[i+1]) {
-            var startIdx = i;
-            var currTotalTime = 0;
-            var currMaxTime = -Infinity;
-            while (colors[i] == colors[i+1] && i < colors.length) {
-                currTotalTime += neededTime[i];
-                currMaxTime = Math.max(currMaxTime, neededTime[i]);
-                i++;
-            }
-            currTotalTime += neededTime[i];
-            currMaxTime = Math.max(currMaxTime, neededTime[i]);
-            totalTime += currTotalTime - currMaxTime;
-        }
+    for (let i = 0; i < colors.length; i++) {
+        if (i > 0 && colors[i] != colors[i - 1]) currMaxTime = 0;
+        
+        totalTime += Math.min(currMaxTime, neededTime[i])
+        currMaxTime = Math.max(currMaxTime, neededTime[i]);
     }
     
     return totalTime;
