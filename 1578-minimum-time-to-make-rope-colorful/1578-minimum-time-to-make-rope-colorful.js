@@ -22,16 +22,16 @@ var minCost = function(colors, neededTime) {
     for (let i = 0; i < colors.length-1; i++) {
         if (colors[i] == colors[i+1]) {
             var startIdx = i;
-            var currTimes = [];
+            var currTotalTime = 0;
+            var currMaxTime = -Infinity;
             while (colors[i] == colors[i+1] && i < colors.length) {
-                currTimes.push(neededTime[i]);
+                currTotalTime += neededTime[i];
+                currMaxTime = Math.max(currMaxTime, neededTime[i]);
                 i++;
             }
-            currTimes.push(neededTime[i])
-            var currTimesSorted = currTimes.sort((a,b) => a-b);
-            for (let j = 0; j < currTimesSorted.length-1; j++) {
-                totalTime += currTimesSorted[j];
-            }
+            currTotalTime += neededTime[i];
+            currMaxTime = Math.max(currMaxTime, neededTime[i]);
+            totalTime += currTotalTime - currMaxTime;
         }
     }
     
