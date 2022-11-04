@@ -14,18 +14,14 @@ var productExceptSelf = function(nums) {
     var left = new Array(nums.length).fill(1);
     var right = new Array(nums.length).fill(1);
     var answer = [];
-    
-    var products = new Array(nums.length).fill(1);
-    console.log(products)
+
     for (let i = 1; i < nums.length; i++) {
         left[i] = left[i-1] * nums[i-1];
     }
-    console.log(left)
     
     for (let i = nums.length-2; i >= 0; i--) {
         right[i] = right[i+1] * nums[i+1];
     }
-    console.log(right)
     
     for (let i = 0; i < nums.length; i++) {
         answer.push(left[i] * right[i]);
