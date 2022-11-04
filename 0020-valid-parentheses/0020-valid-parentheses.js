@@ -12,9 +12,7 @@ var isValid = function(s) {
     for (let bracket of s.split('')) {
         if (bracket in brackets) {
             stack.push(bracket);
-            console.log(bracket)
         } else {
-            console.log(bracket)
             if (brackets[stack.pop()] != bracket) {
                 return false;
             }
