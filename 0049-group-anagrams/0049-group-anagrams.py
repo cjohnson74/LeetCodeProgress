@@ -1,21 +1,16 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        anagrams = [] # return variable
-        anagramsMap = {} # Ex: {'aet': ['ate', 'eat', 'tea']}
+        anagrams = defaultdict(list)
 
-        # loop through string list
-            # sort each string in assending order
-            # add string to anagram map using sorted string as key
         for str in strs:
-            sortedStr = ''.join(sorted(str))
-            print(sortedStr)
-            if sortedStr not in anagramsMap:
-                anagramsMap[sortedStr] = []
-            anagramsMap[sortedStr].append(str)
-        
-        # loop through anagramsMap pushing each array to anagrams
-        for key in anagramsMap:
-            anagrams.append(anagramsMap[key])
+            count = [0] * 26 # [a ... z]
 
-        # return anagrams
-        return anagrams
+            for char in str:
+                # used character ordance to get the idx of count list
+                # Ex: ord('a') - ord('a') = 0
+                # Ex: ord('a') - ord('z') = 26
+                count[ord(char) - ord('a')] += 1
+
+            anagrams[tuple(count)].append(str)
+
+        return anagrams.values()
