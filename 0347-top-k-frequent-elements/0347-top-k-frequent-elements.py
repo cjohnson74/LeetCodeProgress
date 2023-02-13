@@ -21,18 +21,12 @@ class Solution:
             counts[count].append(num)
             # print(num, freqMap[num], counts)
 
-        #print(counts)
-        # while k > 0
         # loop through counts starting at the end of the counts array
-            # if the length of the array at counts[i] is greater than 0
             # pop of each element and add it to topKElem array
             # reduce k by 1
-        while k > 0:
-            for i in range(len(counts)-1, 0, -1):
-                #print(i, counts[i])
-                while len(counts[i]) > 0 and k > 0:
-                    topKElem.append(counts[i].pop(0))
-                    k -= 1
-
-        # return first k indexes of sortedArray
-        return topKElem
+        for i in range(len(counts)-1, 0, -1):
+            #print(i, counts[i])
+            for num in counts[i]:
+                topKElem.append(num)
+                if len(topKElem) == k:
+                    return topKElem
