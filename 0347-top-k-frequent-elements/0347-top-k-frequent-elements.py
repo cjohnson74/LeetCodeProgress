@@ -17,8 +17,8 @@ class Solution:
 
         # loop through freqMap
         # add element to counts array counts[freqMap[key]]
-        for num in freqMap:
-            counts[freqMap[num]].append(num)
+        for num, count in freqMap.items():
+            counts[count].append(num)
             # print(num, freqMap[num], counts)
 
         #print(counts)
