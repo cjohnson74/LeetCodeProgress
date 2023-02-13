@@ -14,3 +14,7 @@ class Solution:
             anagrams[tuple(count)].append(str)
 
         return anagrams.values()
+
+        # O( m * n)
+        # m = number of strings
+        # n = avg length of each string
