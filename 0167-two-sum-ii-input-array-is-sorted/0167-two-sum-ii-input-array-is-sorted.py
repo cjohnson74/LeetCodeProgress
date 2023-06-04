@@ -10,6 +10,5 @@ class Solution:
             elif currVal > target:
                 rightPnt -= 1
             else:
-                break
+                return [leftPnt+1, rightPnt+1]
         
-        return [leftPnt+1, rightPnt+1]
