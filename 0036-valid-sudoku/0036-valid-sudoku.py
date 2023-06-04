@@ -9,7 +9,7 @@ class Solution:
         startCol = 0;
         currBox = 1;
         while currBox < 10:
-            boxValues = []
+            boxValues = {}
             for row in range(startRow, maxRow):
                 for col in range(startCol, maxCol):
                     print(row, col)
@@ -18,7 +18,7 @@ class Solution:
                         if currVal in boxValues:    # check if currVal already exists in the box
                             return False    # if dupe then return false
                         else:
-                            boxValues.append(currVal)
+                            boxValues[currVal] = ''
             print(boxValues)
             currBox += 1
             print(currBox)
