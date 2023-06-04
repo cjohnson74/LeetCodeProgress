@@ -7,15 +7,9 @@ class Solution:
         
         for currVal in numSet:
             if currVal-1 not in numSet:
-                currSeqLen = 1
-                while True:
-                    currVal += 1
-                    if currVal not in numSet:
-                        maxLen = max(currSeqLen, maxLen)
-                        break;
-                    else:
-                        currSeqLen += 1
-            
-                    
-        maxLen = max(maxLen, currSeqLen)
+                currSeqLen = 0
+                while currVal+currSeqLen in numSet:
+                    currSeqLen += 1
+                maxLen = max(maxLen, currSeqLen)
+
         return maxLen
