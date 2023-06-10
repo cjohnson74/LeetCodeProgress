@@ -13,7 +13,7 @@ class Solution:
             return None
         dummy = Node(0)
         
-        oldToNew = {}
+        oldToNew = {None: None}
         
         # iterate through linkedlist
         # create new node
@@ -37,14 +37,8 @@ class Solution:
         
         while currNode:
             copy = oldToNew[currNode]
-            if not currNode.random:
-                copy.random = None
-            else:
-                copy.random = oldToNew[currNode.random]
-            if not currNode.next:
-                copy.next = None
-            else:
-                copy.next = oldToNew[currNode.next]
+            copy.random = oldToNew[currNode.random]
+            copy.next = oldToNew[currNode.next]
             currNode = currNode.next
         
         return dummy.next
