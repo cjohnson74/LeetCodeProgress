@@ -9,8 +9,6 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        dummy = Node(0)
-        
         oldToNew = {None: None}
         
         # iterate through linkedlist
@@ -31,7 +29,6 @@ class Solution:
             currNode = currNode.next
         
         currNode = head
-        dummy.next = oldToNew[currNode]
         
         while currNode:
             copy = oldToNew[currNode]
@@ -39,5 +36,5 @@ class Solution:
             copy.next = oldToNew[currNode.next]
             currNode = currNode.next
         
-        return dummy.next
+        return oldToNew[head]
         
