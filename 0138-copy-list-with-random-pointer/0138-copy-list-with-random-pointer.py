@@ -13,8 +13,7 @@ class Solution:
             return None
         dummy = Node(0)
         
-        nodes = {}
-        newNodes = {}
+        oldToNew = {}
         
         # iterate through linkedlist
         # create new node
@@ -26,46 +25,26 @@ class Solution:
         # make next point to new next node
         # make next currNodeCopy
         
-        nodeKey = 0
         currNode = head
         
         while currNode:
-            nodes[currNode] = nodeKey
-            nodeKey += 1
+            copy = Node(currNode.val)
+            oldToNew[currNode] = copy
             currNode = currNode.next
-        nodes[nodeKey] = None
         
         currNode = head
-        currNodeCopy = Node(currNode.val)
-        dummy.next = currNodeCopy
+        dummy.next = oldToNew[currNode]
         
         while currNode:
-            nodeKey = nodes[currNode]
-            if nodeKey not in newNodes:
-                newNodes[nodeKey] = None
-            newNodes[nodeKey] = currNodeCopy
-            currNodeCopy.val = currNode.val
-            if currNode.next == None:
-                currNodeCopy.next = None
+            if not currNode.random:
+                oldToNew[currNode].random = None
             else:
-                nextNodeKey = nodes[currNode.next]
-                if nextNodeKey not in newNodes:
-                    newNodes[nextNodeKey] = Node(currNode.next.val)
-                    currNodeCopy.next = newNodes[nextNodeKey]
-                else:
-                    currNodeCopy.next = newNodes[nextNodeKey]
-            
-            if currNode.random == None:
-                currNodeCopy.random = None
+                oldToNew[currNode].random = oldToNew[currNode.random]
+            if not currNode.next:
+                oldToNew[currNode].next = None
             else:
-                randomNodeKey = nodes[currNode.random]
-                if randomNodeKey not in newNodes:
-                    newNodes[randomNodeKey] = Node(currNode.random.val)
-                    currNodeCopy.random = newNodes[randomNodeKey]
-                else:
-                    currNodeCopy.random = newNodes[randomNodeKey]
+                oldToNew[currNode].next = oldToNew[currNode.next]
             currNode = currNode.next
-            currNodeCopy = currNodeCopy.next
         
         return dummy.next
         
