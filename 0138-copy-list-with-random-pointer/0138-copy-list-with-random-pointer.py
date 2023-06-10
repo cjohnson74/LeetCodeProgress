@@ -36,14 +36,15 @@ class Solution:
         dummy.next = oldToNew[currNode]
         
         while currNode:
+            copy = oldToNew[currNode]
             if not currNode.random:
-                oldToNew[currNode].random = None
+                copy.random = None
             else:
-                oldToNew[currNode].random = oldToNew[currNode.random]
+                copy.random = oldToNew[currNode.random]
             if not currNode.next:
-                oldToNew[currNode].next = None
+                copy.next = None
             else:
-                oldToNew[currNode].next = oldToNew[currNode.next]
+                copy.next = oldToNew[currNode.next]
             currNode = currNode.next
         
         return dummy.next
