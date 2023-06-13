@@ -6,7 +6,7 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        visited = {}
+        visited = set()
         
         currNode = head
         
@@ -14,7 +14,7 @@ class Solution:
             if (currNode in visited):
                 return True
             else:
-                visited[currNode] = True
+                visited.add(currNode)
             currNode = currNode.next
             
         return False
