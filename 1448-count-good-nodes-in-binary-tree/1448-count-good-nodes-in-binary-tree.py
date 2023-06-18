@@ -8,13 +8,12 @@ class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         
         def dfs(root, greatestVal):
-            count = 0
             if not root:
-                return count
+                return 0
             
-            if root.val >= greatestVal:
-                return 1 + dfs(root.right, root.val) + dfs(root.left, root.val)
-            else:
-                return dfs(root.left, greatestVal) + dfs(root.right, greatestVal)
+            count = 1 if root.val >= greatestVal else 0
+            maxVal = max(greatestVal, root.val)
+            count += dfs(root.left, maxVal)
+            return count + dfs(root.right, maxVal)
         
         return dfs(root, root.val) 
