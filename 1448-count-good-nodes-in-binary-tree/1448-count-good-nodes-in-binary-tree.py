@@ -13,7 +13,6 @@ class Solution:
             
             count = 1 if root.val >= greatestVal else 0
             maxVal = max(greatestVal, root.val)
-            count += dfs(root.left, maxVal)
-            return count + dfs(root.right, maxVal)
+            return count + dfs(root.left, maxVal) + dfs(root.right, maxVal)
         
         return dfs(root, root.val) 
