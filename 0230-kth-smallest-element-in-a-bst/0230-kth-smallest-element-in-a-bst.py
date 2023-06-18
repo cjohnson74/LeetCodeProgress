@@ -17,4 +17,3 @@ class Solution:
         inorderTraversal(root, inorderList)
         
         return inorderList[k-1]
-            
