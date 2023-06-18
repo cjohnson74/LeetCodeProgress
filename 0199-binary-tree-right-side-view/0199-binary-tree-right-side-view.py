@@ -14,13 +14,16 @@ class Solution:
         q.append(root)
         
         while q:
+            rightSide = None
             qLen = len(q)
-            res.append(q[-1].val)
+
             for i in range(qLen):
                 node = q.popleft()
-                if node.left:
+                if node:
+                    rightSide = node
                     q.append(node.left)
-                if node.right:
                     q.append(node.right)
+            if rightSide:
+                res.append(rightSide.val)
                     
         return res
