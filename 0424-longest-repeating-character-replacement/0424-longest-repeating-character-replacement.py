@@ -9,11 +9,11 @@ class Solution:
         for r in range(len(s)):
             window[s[r]] = 1 + window.get(s[r], 0)
             highestFreq = max(window[s[r]], highestFreq)
+            
             while ((r - l + 1) - highestFreq) > k:
                 window[s[l]] -= 1
                 l += 1
-                if window[s[l]] == 0:
-                    window.pop(s[l])
+                    
             longestLen = max(longestLen, r - l + 1)
         
         return longestLen
