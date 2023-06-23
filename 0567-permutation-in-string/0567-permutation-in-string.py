@@ -16,10 +16,11 @@ class Solution:
             if s2[i] in mapS1:
                 if window[s2[i]] == mapS1[s2[i]]:
                     matches += 1
-                    if matches == len(mapS1):
-                        return True
+                    
         
         for r in range(len(s1), len(s2)):
+            if matches == len(mapS1):
+                return True
             if s2[left] in mapS1:
                 if window[s2[left]] == mapS1[s2[left]]:
                     matches -= 1
@@ -30,10 +31,8 @@ class Solution:
             if currLett in mapS1:
                 if window[currLett] == mapS1[currLett]:
                     matches += 1
-                    if matches == len(mapS1):
-                        return True
                 
-        return False
+        return matches == len(mapS1)
             
                 
             
