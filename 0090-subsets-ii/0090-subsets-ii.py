@@ -4,7 +4,6 @@ class Solution:
         nums.sort()
         
         def backtrack(currSet, idx):
-            print(currSet, idx)
             if idx == len(nums):
                 subsets.append(currSet[::])
                 return
