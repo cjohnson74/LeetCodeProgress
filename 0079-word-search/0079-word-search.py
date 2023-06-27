@@ -23,8 +23,8 @@ class Solution:
         
         for row in range(ROWS):
             for col in range(COLS):
-                if dfs(row, col, 0): return True
-                    
+                if board[row][col] is word[0]:
+                    if dfs(row, col, 0): return True
         return False
                     
         
