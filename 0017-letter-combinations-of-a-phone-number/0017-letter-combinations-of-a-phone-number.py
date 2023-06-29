@@ -1,8 +1,6 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         res = []
-        if len(digits) == 0:
-            return res
         
         digitToLettMap = {
             "2": "abc",
@@ -21,6 +19,7 @@ class Solution:
             
             for lett in digitToLettMap[digits[i]]:
                 backtrack(i + 1, currCombo + lett)
-                
-        backtrack(0, '')
+             
+        if digits:
+            backtrack(0, '')
         return res
