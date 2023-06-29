@@ -20,9 +20,7 @@ class Solution:
                 return
             
             for lett in digitToLettMap[digits[i]]:
-                currCombo += lett
-                backtrack(i + 1, currCombo)
-                currCombo = currCombo[:-1]
+                backtrack(i + 1, currCombo + lett)
                 
         backtrack(0, '')
         return res
