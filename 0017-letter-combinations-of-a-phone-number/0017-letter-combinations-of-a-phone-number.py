@@ -15,7 +15,7 @@ class Solution:
             "9": "wxyz" }
         
         def backtrack(i, currCombo):
-            if i >= len(digits):
+            if len(currCombo) >= len(digits):
                 res.append(currCombo)
                 return
             
