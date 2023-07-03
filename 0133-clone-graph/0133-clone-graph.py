@@ -22,7 +22,4 @@ class Solution:
                 
             return copy
         
-        if node:
-            return dfs(node)
-        else:
-            return None
+        return dfs(node) if node else None
