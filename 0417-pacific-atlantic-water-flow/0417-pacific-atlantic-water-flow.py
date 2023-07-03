@@ -24,18 +24,14 @@ class Solution:
             
         for row in range(ROWS):
             if (row, 0) not in pacific:
-                pacific[(row,0)] = True
-                dfs(row, 0, 0, pacific)
+                dfs(row, 0, heights[row][0], pacific)
             if (row,COLS-1) not in atlantic:
-                atlantic[(row, COLS-1)] = True
-                dfs(row, COLS-1, 0, atlantic)
+                dfs(row, COLS-1, heights[row][COLS-1], atlantic)
         for col in range(COLS):
             if (0,col) not in pacific:
-                pacific[(0,col)] = True
-                dfs(0, col, 0, pacific)
+                dfs(0, col, heights[0][col], pacific)
             if (ROWS-1,col) not in atlantic:
-                atlantic[(ROWS-1, col)] = True
-                dfs(ROWS-1, col, 0, atlantic)
+                dfs(ROWS-1, col, heights[ROWS-1][col], atlantic)
         # for row in range(ROWS):
         #     if (row,COLS-1) not in atlantic:
         #         atlantic[(row, COLS-1)] = True
