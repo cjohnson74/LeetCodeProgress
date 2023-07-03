@@ -4,13 +4,12 @@ class Solution:
         Do not return anything, modify board in-place instead.
         """
         ROWS, COLS = len(board), len(board[0])
-        notFlip = set()
         
         def dfs(row, col):
-            if row < 0 or row >= ROWS or col < 0 or col >= COLS or board[row][col] == 'X' or (row, col) in notFlip:
+            if row < 0 or row >= ROWS or col < 0 or col >= COLS or board[row][col] == 'X' or board[row][col] == 'NF':
                 return
             
-            notFlip.add((row,col))
+            board[row][col] = 'NF'
             
             deltas = [(0,1),(0,-1),(1,0),(-1,0)]
             for rowDelta, colDelta in deltas:
@@ -28,5 +27,10 @@ class Solution:
             
         for row in range(ROWS):
             for col in range(COLS):
-                if board[row][col] == 'O' and (row, col) not in notFlip:
+                if board[row][col] == 'O':
                     board[row][col] = 'X'
+                    
+        for row in range(ROWS):
+            for col in range(COLS):
+                if board[row][col] == 'NF':
+                    board[row][col] = 'O'
