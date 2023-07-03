@@ -11,15 +11,16 @@ class Solution:
         oldToNew = {}
         
         def dfs(node):
-            oldToNew[node] = Node(node.val)
+            if node in oldToNew:
+                return oldToNew[node]
+            
+            copy = Node(node.val)
+            oldToNew[node] = copy
             
             for neighborNode in node.neighbors:
-                if (neighborNode in oldToNew):
-                    oldToNew[node].neighbors.append(oldToNew[neighborNode])
-                else:
-                    oldToNew[node].neighbors.append(dfs(neighborNode))
-            
-            return oldToNew[node]
+                copy.neighbors.append(dfs(neighborNode))
+                
+            return copy
         
         if node:
             return dfs(node)
