@@ -6,7 +6,7 @@ class Solution:
         atlantic = {}
         
         def dfs(row, col, prevHeight, ocean):
-            if row < 0 or row >= ROWS or col < 0 or col >= COLS:
+            if row < 0 or row >= ROWS or col < 0 or col >= COLS or (row,col) in ocean:
                 return
             
             if heights[row][col] < prevHeight:
