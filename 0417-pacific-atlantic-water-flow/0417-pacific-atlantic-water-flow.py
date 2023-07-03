@@ -2,14 +2,13 @@ class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         ROWS, COLS = len(heights), len(heights[0])
         cells = []
-        pacific = {}
-        atlantic = {}
+        pacific, atlantic = set(), set()
         
         def dfs(row, col, prevHeight, ocean):
             if (row,col) in ocean or row < 0 or row >= ROWS or col < 0 or col >= COLS or heights[row][col] < prevHeight:
                 return
             
-            ocean[(row,col)] = True
+            ocean.add((row, col))
             
             deltas = [[0,1],[0,-1],[1,0],[-1,0]]
             for [rowDelta, colDelta] in deltas:
@@ -20,23 +19,11 @@ class Solution:
                 
             
         for row in range(ROWS):
-            if (row, 0) not in pacific:
-                dfs(row, 0, heights[row][0], pacific)
-            if (row,COLS-1) not in atlantic:
-                dfs(row, COLS-1, heights[row][COLS-1], atlantic)
+            dfs(row, 0, heights[row][0], pacific)
+            dfs(row, COLS-1, heights[row][COLS-1], atlantic)
         for col in range(COLS):
-            if (0,col) not in pacific:
-                dfs(0, col, heights[0][col], pacific)
-            if (ROWS-1,col) not in atlantic:
-                dfs(ROWS-1, col, heights[ROWS-1][col], atlantic)
-        # for row in range(ROWS):
-        #     if (row,COLS-1) not in atlantic:
-        #         atlantic[(row, COLS-1)] = True
-        #         dfs(row, COLS-1, 0, atlantic)
-        # for col in range(COLS):
-        #     if (ROWS-1,col) not in atlantic:
-        #         atlantic[(ROWS-1, col)] = True
-        #         dfs(ROWS-1, col, 0, atlantic)
+            dfs(0, col, heights[0][col], pacific)
+            dfs(ROWS-1, col, heights[ROWS-1][col], atlantic)
                 
         for row in range(ROWS):
             for col in range(COLS):
