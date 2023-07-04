@@ -2,10 +2,7 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # create a graph out of the adjacency list
         
-        # check for cycles by keeping a visited set
-            # black
-            # white
-            # gray
+        # have a visiting set to detect cycles
         
         # when visiting a node it is gray
         # when all neighbors have been visited the class is white
