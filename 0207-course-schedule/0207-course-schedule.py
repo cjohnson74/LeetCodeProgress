@@ -10,15 +10,11 @@ class Solution:
         
         # if the course is in visiting set we can return fails because a cycle was detected
         
-        courses = {}
+        courses = { i:[] for i in range(numCourses) }
         visiting = set()
         
         for course, prereq in prerequisites:
-            if course not in courses:
-                courses[course] = []
             courses[course].append(prereq)
-            if prereq not in courses:
-                courses[prereq] = []
         
         def dfs(course):
             if course in visiting:
@@ -39,9 +35,7 @@ class Solution:
         if len(prerequisites) == 0:
             return True
 
-        for course in courses:
-            if len(courses[course]) != 0:
-                if (not dfs(course)):
-                    return False
+        for course in range(numCourses):
+                if (not dfs(course)): return False
                 
         return True
