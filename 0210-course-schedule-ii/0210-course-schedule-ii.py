@@ -1,22 +1,24 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         courses = { i:[] for i in range(numCourses) }
-        visiting = set()
         
         for course, prereq in prerequisites:
             courses[course].append(prereq)
+        
+        # a course has 3 possible states:
+        # unvisited -> course not added to output or cycle
+        # visiting -> course has not been added to output, but added to cycle
+        # visited -> course has been added to output
+        
+        visiting, visited = set(), set()
             
         order = []
-        
-        for course in courses:
-            if courses[course] == []:
-                order.append(course)
         
         def dfs(course):
             if course in visiting:
                 return False
             
-            if courses[course] == []:
+            if course in visited:
                 return True
             
             visiting.add(course)
@@ -25,7 +27,7 @@ class Solution:
                 if (not dfs(prereq)): return False
                 
             visiting.remove(course)
-            courses[course] = []
+            visited.add(course)
             order.append(course)
             return True
         
