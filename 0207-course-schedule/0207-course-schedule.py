@@ -4,35 +4,36 @@ class Solution:
         
         # have a visiting set to detect cycles
         
-        # when visiting a node it is gray
-        # when all neighbors have been visited the class is white
-        # when something is not visited it is black
+        # remove the course from the prereq list
+        
+        # if the prereq list is empty they we can return true in dfs
+        
+        # if the course is in visiting set we can return fails because a cycle was detected
+        
         courses = {}
+        visiting = set()
+        
         for course, prereq in prerequisites:
             if course not in courses:
                 courses[course] = []
             courses[course].append(prereq)
             if prereq not in courses:
                 courses[prereq] = []
-                
-        visiting = set()
         
         def dfs(course):
             if course in visiting:
                 return False
             
-            if len(courses[course]) == 0:
+            if courses[course] == []:
                 return True
             
             visiting.add(course)
 
-            for neighbor in courses[course]:
-                if (dfs(neighbor)):
-                    courses[course].remove(neighbor)
-                else:
-                    return False
+            for prereq in courses[course]:
+                if not dfs(prereq): return False
 
             visiting.remove(course)
+            courses[course] = []
             return True
         
         if len(prerequisites) == 0:
@@ -44,9 +45,3 @@ class Solution:
                     return False
                 
         return True
-            
-            
-            
-            
-                
-            
