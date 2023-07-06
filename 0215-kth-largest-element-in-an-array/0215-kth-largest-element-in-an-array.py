@@ -3,7 +3,7 @@ class Solution:
         heapq.heapify(nums)
         length = len(nums)
         output = 0
-        while length > k-1:
+        while length >= k:
             output = heapq.heappop(nums)
             length -= 1
             
