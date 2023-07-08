@@ -3,7 +3,6 @@ class Solution:
         left, right = 0, len(s) - 1
         
         while left <= right:
-            print(left, right)
             if not self.alphaNum(s[left]):
                 left += 1
                 continue
