@@ -11,8 +11,9 @@ class Solution:
         left, right = 0, 1
         
         while right < len(prices):
-            profit = prices[right] - prices[left]
-            maxProfit = max(maxProfit, profit)
+            if prices[left] < prices[right]:
+                profit = prices[right] - prices[left]
+                maxProfit = max(maxProfit, profit)
             
             if prices[right] < prices[left]:
                 left = right
