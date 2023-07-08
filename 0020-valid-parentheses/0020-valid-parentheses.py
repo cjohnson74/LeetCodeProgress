@@ -11,19 +11,14 @@ class Solution:
         
         for bracket in s:
             if bracket in brackets:
-                if stack:
-                    poppedBracket = stack.pop()
-                    if poppedBracket != brackets[bracket]:
-                        return False
+                if stack and stack[-1] == brackets[bracket]:
+                    stack.pop()
                 else:
                     return False
             else:
                 stack.append(bracket)
                 
-                
-        if stack:
-            return False
-        return True
+        return True if not stack else False
             
         
         
