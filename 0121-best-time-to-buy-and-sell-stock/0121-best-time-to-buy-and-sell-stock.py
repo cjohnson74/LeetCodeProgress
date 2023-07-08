@@ -8,7 +8,7 @@ class Solution:
         # return maxProfit
         
         maxProfit = 0
-        left, right = 0, 0
+        left, right = 0, 1
         
         while right < len(prices):
             profit = prices[right] - prices[left]
