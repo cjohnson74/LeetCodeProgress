@@ -13,7 +13,7 @@ class Solution:
         while stack:
             
             for i in range(len(stack)):
-                node, depth = stack.pop()
+                node, depth = stack.popleft()
                 if not node:
                     maxDepth = max(maxDepth, depth)
                     continue
