@@ -10,15 +10,16 @@ class Solution:
                    }
         
         for bracket in s:
-            if bracket in '([{':
-                stack.append(bracket)
-            else:
+            if bracket in brackets:
                 if stack:
                     poppedBracket = stack.pop()
                     if poppedBracket != brackets[bracket]:
                         return False
                 else:
                     return False
+            else:
+                stack.append(bracket)
+                
                 
         if stack:
             return False
