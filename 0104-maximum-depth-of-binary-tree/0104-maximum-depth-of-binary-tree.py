@@ -11,9 +11,9 @@ class Solution:
             if not node:
                 return 0
             
-            leftDepth = dfs(node.left, depth + 1) if node.left else depth
-            rightDepth = dfs(node.right, depth + 1) if node.right else depth
+            leftDepth = dfs(node.left, depth + 1)
+            rightDepth = dfs(node.right, depth + 1)
             
-            return max(leftDepth, rightDepth)
+            return max(leftDepth, rightDepth, depth)
         
         return dfs(root)
