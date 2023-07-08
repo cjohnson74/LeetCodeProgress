@@ -14,10 +14,8 @@ class Solution:
             if prices[left] < prices[right]:
                 profit = prices[right] - prices[left]
                 maxProfit = max(maxProfit, profit)
-            
-            if prices[right] < prices[left]:
-                left = right
             else:
-                right += 1
+                left = right
+            right += 1
                 
         return maxProfit
