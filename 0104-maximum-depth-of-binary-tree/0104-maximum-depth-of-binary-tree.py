@@ -11,7 +11,7 @@ class Solution:
         maxDepth = 0
         
         while stack:
-            node, depth = stack.pop()
+            node, depth = stack.popleft()
             if not node:
                 maxDepth = max(maxDepth, depth)
                 continue
