@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        stack = collections.deque()
+        stack = deque()
         stack.append([root, 0])
         maxDepth = 0
         
