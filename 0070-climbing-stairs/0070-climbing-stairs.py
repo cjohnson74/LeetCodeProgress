@@ -1,11 +1,10 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        dp = [0] * (n + 1)
+        dp = [1] * 3
         
-        for step in range(len(dp)-1, -1, -1):
-            if step == n or step + 1 == n:
-                dp[step] = 1
-            else:
-                dp[step] = dp[step + 1] + dp[step + 2]
+        for step in range(n-2, -1, -1):
+            dp[0] = dp[1] + dp[2]
+            dp[2] = dp[1]
+            dp[1] = dp[0] 
                 
         return dp[0]
