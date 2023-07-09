@@ -13,21 +13,30 @@ class Solution:
         # reduce time: O(n) keeping a memo
         # reduce space: O(n) keeping a memo of the length of the houses and reduces repeated work
         
-        def dfs(house, memo = {}):
-            if house in memo:
-                return memo[house]
-            
-            if house == len(nums)-1:
-                return nums[house]
-            
-            if house > len(nums)-1:
-                return 0
-            
-            currMaxRobbed = 0
-            for nextHouse in range(house + 2, len(nums)):
-                currMaxRobbed = max(currMaxRobbed, dfs(nextHouse))
-            
-            memo[house] = nums[house] + currMaxRobbed
-            return memo[house]
+        rob1, rob2 = 0, 0
         
-        return max(dfs(0), dfs(1))
+        for house in nums:
+            temp = max(house + rob1, rob2)
+            rob1 = rob2
+            rob2 = temp
+            
+        return rob2
+        
+#         def dfs(house, memo = {}):
+#             if house in memo:
+#                 return memo[house]
+            
+#             if house == len(nums)-1:
+#                 return nums[house]
+            
+#             if house > len(nums)-1:
+#                 return 0
+            
+#             currMaxRobbed = 0
+#             for nextHouse in range(house + 2, len(nums)):
+#                 currMaxRobbed = max(currMaxRobbed, dfs(nextHouse))
+            
+#             memo[house] = nums[house] + currMaxRobbed
+#             return memo[house]
+        
+#         return max(dfs(0), dfs(1))
