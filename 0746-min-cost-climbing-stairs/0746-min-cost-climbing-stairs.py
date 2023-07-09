@@ -10,6 +10,8 @@ class Solution:
         # space: n being the deepest branch in the decision tree
         # reduce time: O(n) using dp/memoization
         # space: n being the number of steps because we cut out repeated work with memo
+        # time: O(n)
+        # reduce space: O(1)
         
         def dfs(step, memo = {}):
             if step in memo:
