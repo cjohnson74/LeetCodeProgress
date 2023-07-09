@@ -10,17 +10,18 @@ class Solution:
         
         for i in range(len(s)):
             # check odd pali
-            left, right = i, i
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                numOfPalindromes += 1
-                left -= 1
-                right += 1
+            numOfPalindromes += self.numPali(s, i, i)
                 
             # check even pali
-            left, right = i, i + 1
-            while left >= 0. and right < len(s) and s[left] == s[right]:
-                numOfPalindromes += 1
-                left -= 1
-                right += 1
+            numOfPalindromes += self.numPali(s, i, i+1)
                 
         return numOfPalindromes
+    
+    def numPali(self, s, left, right):
+        result = 0
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            result += 1
+            left -= 1
+            right += 1
+            
+        return result
