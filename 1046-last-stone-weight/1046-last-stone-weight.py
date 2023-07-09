@@ -8,8 +8,7 @@ class Solution:
             # push onto heap biggestStone - secondBiggestStone
             
         # return stones[0]
-        for i in range(len(stones)):
-            stones[i] = stones[i] * -1
+        stones = [-stone for stone in stones]
         
         heapq.heapify(stones)
         
