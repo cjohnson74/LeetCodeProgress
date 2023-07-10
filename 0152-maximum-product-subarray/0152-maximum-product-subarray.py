@@ -16,6 +16,6 @@ class Solution:
                 temp = max((num * currMin), (num * currMax), num)
                 currMin = min((num * currMin), (num * currMax), num)
                 currMax = temp
-                res = max(res, currMax, currMin)
+                res = max(res, currMax)
             
         return res
