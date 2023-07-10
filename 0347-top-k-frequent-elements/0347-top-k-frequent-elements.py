@@ -1,32 +1,25 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # freqMap
+        # have a freq map O(n) and space
+        # array of arrays [-freq, lett] # O(n)
+        # heapify array O(n) time and space
+        # result = []
+        # for i in range(k)
+            # result.append(-1 * heapq.heappop(heap))
+        # return result
         freqMap = {}
-
-        # counts length of nums and empty array at each idx
-        counts = [[] for i in range(len(nums) + 1)]
-
-        print(counts)
-        # topKElem = []
-        topKElem = []
-
-        # loop through list of integers
-        # if integer in freqMap increase value by 1
+        
         for num in nums:
-            freqMap[num] = 1 + freqMap.get(num, 0)
-
-        # loop through freqMap
-        # add element to counts array counts[freqMap[key]]
-        for num, count in freqMap.items():
-            counts[count].append(num)
-            # print(num, freqMap[num], counts)
-
-        # loop through counts starting at the end of the counts array
-            # pop of each element and add it to topKElem array
-            # reduce k by 1
-        for i in range(len(counts)-1, 0, -1):
-            #print(i, counts[i])
-            for num in counts[i]:
-                topKElem.append(num)
-                if len(topKElem) == k:
-                    return topKElem
+            if num not in freqMap:
+                freqMap[num] = 0
+            freqMap[num] += 1
+            
+        freqMapItems = [[(-1 * freqMap[num]), num] for num in freqMap]
+        print(freqMapItems)
+        heapq.heapify(freqMapItems)
+        
+        res = []
+        for i in range(k):
+            res.append(heapq.heappop(freqMapItems)[1])
+            
+        return res
