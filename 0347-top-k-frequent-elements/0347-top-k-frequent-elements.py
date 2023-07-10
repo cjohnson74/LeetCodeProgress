@@ -8,18 +8,17 @@ class Solution:
             # result.append(-1 * heapq.heappop(heap))
         # return result
         freqMap = {}
+        counts = [[] for i in range(len(nums) + 1)]
         
         for num in nums:
-            if num not in freqMap:
-                freqMap[num] = 0
-            freqMap[num] += 1
+            freqMap[num] = 1 + freqMap.get(num, 0)
             
-        freqMapItems = [[(-1 * freqMap[num]), num] for num in freqMap]
-        print(freqMapItems)
-        heapq.heapify(freqMapItems)
+        for num, freq in freqMap.items():
+            counts[freq].append(num)
         
         res = []
-        for i in range(k):
-            res.append(heapq.heappop(freqMapItems)[1])
-            
-        return res
+        for i in range(len(counts) - 1, 0, -1):
+            for num in counts[i]:
+                res.append(num)
+            if len(res) == k:
+                return res
