@@ -3,16 +3,15 @@ class Solution:
         numOfSubstrings = 0
         
         for i in range(len(s)):
-            left, right = i, i
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                numOfSubstrings += 1
-                left -= 1
-                right += 1
-                
-            left, right = i, i + 1
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                numOfSubstrings += 1
-                left -= 1
-                right += 1
+            numOfSubstrings += self.countPali(i, i, s)
+            numOfSubstrings += self.countPali(i, i + 1, s)
                 
         return numOfSubstrings
+    
+    def countPali(self, left, right, s):
+        res = 0
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            res += 1
+            left -= 1
+            right += 1
+        return res
