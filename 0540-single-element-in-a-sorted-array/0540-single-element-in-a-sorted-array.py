@@ -19,7 +19,7 @@ class Solution:
         # move RP
         
         L, R = 0, len(nums) - 1
-    
+        
         while L < R:
             mid = (L + R) // 2
 
